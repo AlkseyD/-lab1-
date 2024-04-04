@@ -1,0 +1,9 @@
+pipeline {
+    agent any
+    stages {
+        stage('push in S3') {
+            steps {
+              aws s3 cp index.html s3://jenkins-bucket-for-lab1dovbah
+            }
+    } 
+}
