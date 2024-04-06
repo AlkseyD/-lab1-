@@ -1,30 +1,32 @@
-// This Jenkinsfile downloads a file from GitHub and uploads it to an S3 bucket.
+// Цей Jenkinsfile завантажує файл з GitHub та завантажує його в відро S3.
+
 pipeline {
-  
-    agent any
+
+  agent any
 
   stages {
-    
-    // Stage to download the file from GitHub
-    stage('Download file from GitHub') {
+
+    // Stage завантаження файлу з GitHub
+    stage('Завантажити файл з GitHub') {
       steps {
         git 'https://github.com/AlkseyD/-lab1-/blob/main/new_site.html'
-        echo "File downloaded from GitHub"
+        echo 'Файл завантажено з GitHub'
       }
     }
 
-    // Stage to upload the file to S3 bucket
-    stage('Upload file to S3 bucket') {
+    // Stage завантаження файлу в відро S3
+    stage('Завантажити файл в відро S3') {
       steps {
         aws s3 cp new_site.html s3://jenkins-bucket-for-lab1dovbah
+        echo 'Файл завантажено в відро S3'
       }
-    
+    }
 
-    // Stage to delete the cloned Git repository
-    stage('Delete cloned Git repository') {
+    // Stage видалення клонованого Git-репозиторію
+    stage('Видалити клонований Git-репозиторій') {
       steps {
         deleteDir()
-        echo "Cloned Git repository deleted"
+        echo 'Клонований Git-репозиторій видалено'
       }
     }
   }
