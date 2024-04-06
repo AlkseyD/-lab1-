@@ -17,7 +17,7 @@ pipeline {
     // Stage завантаження файлу в відро S3
     stage('Завантажити файл в відро S3') {
       steps {
-        aws s3 cp new_site.html jenkins-bucket-for-lab1dovbah
+        aws s3 cp new_site.html s3://jenkins-bucket-for-lab1dovbah
         echo 'Файл завантажено в відро S3'
       }
     }
