@@ -21,9 +21,8 @@ pipeline {
       steps {
         s3Upload(
           bucket: 'jenkins-bucket-for-lab1dovbah',
-          region: 'your-aws-region', // Замініть на ваш регіон
+          region: 'us-east-1', // Замініть на ваш регіон
           file: 'new_site.html',
-          credentialsId: 'your-aws-credentials-id' // Замініть на ID ваших облікових даних
         )
         echo 'Файл завантажено в відро S3'
       }
