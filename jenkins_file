@@ -9,7 +9,9 @@ pipeline {
     // Stage завантаження файлу з GitHub
     stage('Завантажити файл з GitHub') {
       steps {
-        git 'https://github.com/AlkseyD/-lab1-/blob/main/new_site.html'
+        // Оновлений код:
+        git 'https://github.com/AlkseyD/-lab1-'  // Отримати весь репозиторій
+        sh 'mv -f -v -t . new_site.html'       // Перемістити потрібний файл
         echo 'Файл завантажено з GitHub'
       }
     }
@@ -19,15 +21,12 @@ pipeline {
       steps {
         s3Upload(
           bucket: 'jenkins-bucket-for-lab1dovbah',
-          region: 'your-aws-region', // Replace with your region
+          region: 'your-aws-region', // Замініть на ваш регіон
           file: 'new_site.html',
-          credentialsId: 'your-aws-credentials-id' // Replace with your credential ID
+          credentialsId: 'your-aws-credentials-id' // Замініть на ID ваших облікових даних
         )
-      echo 'File uploaded to S3 bucket'
+        echo 'Файл завантажено в відро S3'
       }
-    }
-}
-
     }
 
     // Stage видалення клонованого Git-репозиторію
@@ -37,3 +36,5 @@ pipeline {
         echo 'Клонований Git-репозиторій видалено'
       }
     }
+  }
+}
