@@ -17,7 +17,6 @@ pipeline {
     stage('Upload file to S3 bucket') {
       steps {
         aws s3 cp new_site.html s3://jenkins-bucket-for-lab1dovbah
-        echo "File uploaded to S3 bucket"
       }
     
 
