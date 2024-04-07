@@ -1,33 +1,42 @@
-// This Jenkinsfile downloads a file from GitHub and uploads it to an S3 bucket.
 pipeline {
 
-    agent any
+  agent any
 
   stages {
 
     // Stage to download the file from GitHub
     stage('Download file from GitHub') {
       steps {
-        git 'https://github.com/AlkseyD/-lab1-/blob/main/new_site.html'
-        echo "File downloaded from GitHub"
+        // Fetch the entire repository containing new_site.html (recommended)
+        git branch: 'main', url: 'https://github.com/AlkseyD/-lab1-'
+
+        // Alternatively, fetch only the specific file if size is a concern
+        // git 'https://github.com/AlkseyD/-lab1-/blob/main/new_site.html'
+
+        echo 'File downloaded from GitHub'
       }
     }
 
     // Stage to upload the file to S3 bucket
     stage('Upload file to S3 bucket') {
       steps {
+        // Use the AWS CLI for broader compatibility (if installed on Jenkins)
         sh 'aws s3 cp new_site.html s3://jenkins-bucket-for-lab1dovbah'
-        echo "File uploaded to S3 bucket"
-      }
 
+        // Alternatively, use a Jenkins plugin for S3 uploads (if available)
+        // ... (plugin-specific syntax)
 
-    // Stage to delete the cloned Git repository
-    stage('Delete cloned Git repository') {
-      steps {
-        deleteDir()
-        echo "Cloned Git repository deleted"
+        echo 'File uploaded to S3 bucket'
       }
     }
+
+    // Stage to delete the cloned Git repository (optional)
+    stage('Delete cloned Git repository') {
+      steps {
+        // This stage is optional, as Jenkins usually cleans up workspaces
+        deleteDir()
+        echo 'Cloned Git repository deleted'
+      }
     }
   }
 }
