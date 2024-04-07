@@ -28,5 +28,6 @@ pipeline {
         echo "Cloned Git repository deleted"
       }
     }
+    }
   }
 }
