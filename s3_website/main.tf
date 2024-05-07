@@ -16,7 +16,6 @@ provider "aws" {
   profile                 ="default"
 }
 
-
 # Creating bucket
 resource "aws_s3_bucket" "website" {
   bucket = "terra-bucket-for-lab2dovbah"
