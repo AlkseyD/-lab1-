@@ -9,9 +9,10 @@ terraform {
 
 # Configure AWS provider and creds
 provider "aws" {
-  region		  ="us-east-1"
+  region                  ="us-east-1"
+  shared_config_files     =["/home/ec2-user/config"]
   shared_credentials_files=["/home/ec2-user/credentials"]
-  profile		  ="default"
+  profile                 ="default"
 }
 
 
@@ -46,7 +47,7 @@ resource "aws_s3_bucket_policy" "allow_access" {
 data "aws_iam_policy_document" "allow_access" {
   statement {
     principals {
-      type	  = "AWS"
+      type        = "AWS"
       identifiers = ["*"]
     }
     actions = [
@@ -68,4 +69,6 @@ resource "aws_s3_object" "indexfile" {
 output "website_endpoint" {
   value = aws_s3_bucket_website_configuration.website_config.website_endpoint
 }
+
+
 
