@@ -9,15 +9,15 @@ terraform {
 
 # Configure AWS provider and creds
 provider "aws" {
-  region                   = "us-east-1"
-  shared_config_files      = ["C:/Users/User/.aws/config"]
-  shared_credentials_files = ["C:/Users/User/.aws/credentials"]
-  profile                  = "default"
+  region                  ="us-east-1"
+  shared_config_files     =["/home/ec2-user/config"]
+  shared_credentials_files=["/home/ec2-user/credentials"]
+  profile                 ="default"
 }
 
 # Creating bucket
 resource "aws_s3_bucket" "website" {
-  bucket = "my-buck4397778922"
+  bucket = "terra-bucket-for-lab2dovbah"
 
   tags = {
     Name        = "Website"
