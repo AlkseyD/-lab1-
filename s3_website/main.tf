@@ -8,12 +8,12 @@ terraform {
 }
 
 # Configure AWS provider and creds
-#provider "aws" {
-#  region                  = "us-east-1"
+provider "aws" {
+  region                  = "us-east-1"
 #  shared_config_files     = ["/home/ec2-user/.aws/config"]
 #  shared_credentials_files = ["/home/ec2-user/.aws/credentials"]
 #  profile                 = "default"
-#}
+}
 
 # Creating bucket
 resource "aws_s3_bucket" "website" {
