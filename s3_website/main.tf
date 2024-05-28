@@ -10,9 +10,9 @@ terraform {
 # Configure AWS provider and creds
 provider "aws" {
   region                  = "us-east-1"
-#  shared_config_files     = ["/home/ec2-user/.aws/config"]
-#  shared_credentials_files = ["/home/ec2-user/.aws/credentials"]
-#  profile                 = "default"
+  #shared_config_files     = ["/home/ec2-user/.aws/config"]
+  #shared_credentials_files = ["/home/ec2-user/.aws/credentials"]
+  #profile                 = "default"
 }
 
 # Creating bucket
@@ -63,7 +63,7 @@ resource "aws_s3_bucket_policy" "website" {
   policy = data.aws_iam_policy_document.website_read.json
 }
 
-resource "aws_s3_bucket_object" "indexfile" {
+resource "aws_s3_object" "indexfile" {
   bucket       = aws_s3_bucket.website.id
   key          = "index.html"
   source       = "./src/index.html"
